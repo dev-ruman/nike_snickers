@@ -14,7 +14,9 @@ class Layout extends StatefulWidget {
 class _LayoutState extends State<Layout> {
   int selectedIndex = 0;
   void onNavigated(int index) {
-    setState(() {});
+    setState(() {
+      selectedIndex = index;
+    });
   }
 
   final List<Widget> _pages = [const Shop(), const Cart()];
@@ -32,7 +34,7 @@ class _LayoutState extends State<Layout> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: Padding(
+              icon: const Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Icon(
                   Icons.menu,
