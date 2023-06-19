@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nike_snickers/pages/home_page.dart';
+import 'package:nike_snickers/pages/layout_page.dart';
 
 class Intropage extends StatelessWidget {
   const Intropage({super.key});
@@ -35,8 +35,8 @@ class Intropage extends StatelessWidget {
             height: 48,
           ),
           GestureDetector(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Homepage())),
+            onTap: () => Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Layout())),
             child: Container(
               padding: EdgeInsets.all(15.0),
               decoration: BoxDecoration(
