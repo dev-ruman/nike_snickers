@@ -3,7 +3,9 @@ import 'package:nike_snickers/models/shoes.dart';
 
 class ShoeTile extends StatefulWidget {
   Shoes? shoes;
-  ShoeTile({super.key, required this.shoes});
+  void Function()? onTap;
+
+  ShoeTile({super.key, required this.shoes, required this.onTap});
 
   @override
   State<ShoeTile> createState() => _ShoeTileState();
@@ -47,7 +49,7 @@ class _ShoeTileState extends State<ShoeTile> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Padding(
@@ -62,19 +64,22 @@ class _ShoeTileState extends State<ShoeTile> {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[900]),
-                  child: Text(
-                    'Add to cart',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.white),
+                child: GestureDetector(
+                  onTap: widget.onTap,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[900]),
+                    child: const Text(
+                      'Add to cart',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
               ),
