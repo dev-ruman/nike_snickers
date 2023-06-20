@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:nike_snickers/models/shoes.dart';
 
-class Cart {
+class Cart extends ChangeNotifier {
   List<Shoes> shoeShop = [
     Shoes(
         price: '110',
@@ -33,4 +34,22 @@ class Cart {
             'Rebellious 90s style gets remastered. Rugged details, including a reinforced toe and durable plastic cage, ramp up your attitude with outdoor-inspired vibes. And for added stability, it updates your Tuned Air experience with our innovative Crater Foam midsole.',
         title: 'Terrascape Plus'),
   ];
+  List<Shoes> userCart = [];
+  List<Shoes> getShoeList() {
+    return shoeShop;
+  }
+
+  List<Shoes> getUserCart() {
+    return userCart;
+  }
+
+  void addItemToCart(Shoes shoes) {
+    userCart.add(shoes);
+    notifyListeners();
+  }
+
+  void removeItemFromCart(Shoes shoes) {
+    userCart.remove(shoes);
+    notifyListeners();
+  }
 }

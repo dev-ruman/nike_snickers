@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nike_snickers/components/shoe_tile.dart';
 import 'package:nike_snickers/models/shoes.dart';
+import 'package:provider/provider.dart';
 
 class Shop extends StatefulWidget {
   const Shop({super.key});
@@ -44,83 +45,81 @@ class _ShopState extends State<Shop> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
-          padding: EdgeInsets.all(12.0),
-          margin: EdgeInsets.symmetric(horizontal: 25.0),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Search',
-                style: TextStyle(color: Colors.grey),
-              ),
-              Icon(
-                Icons.search,
-                color: Colors.grey,
-              )
-            ],
+    return Consumer(
+      builder: (BuildContext context, value, Widget? child) => Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[200]),
+            padding: EdgeInsets.all(12.0),
+            margin: EdgeInsets.symmetric(horizontal: 25.0),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Search',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Icon(
+                  Icons.search,
+                  color: Colors.grey,
+                )
+              ],
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: Text(
-            'Take the high road and go higher',
-            style: TextStyle(color: Colors.grey[600], fontSize: 18),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Text(
+              'Take the high road and go higher',
+              style: TextStyle(color: Colors.grey[600], fontSize: 18),
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Hot Picks',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: Colors.grey[900]),
-              ),
-              Container(
-                padding: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.grey[900]),
-                child: Text(
-                  'See All',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Hot Picks',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.grey[200]),
+                      fontSize: 24,
+                      color: Colors.grey[900]),
                 ),
-              )
-            ],
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.grey[900]),
+                  child: Text(
+                    'See All',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.grey[200]),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                Shoes shoe = Shoes(
-                    price: '125',
-                    imagePath: 'lib/assets/air_jordan_1_mid_1.webp',
-                    description:
-                        'Inspired by the original AJ1, the Air Jordan 1 Mid offers fans a chance to follow in MJ s footsteps. Fresh color trims the clean, classic materials, imbuing modernity into a classic design.',
-                    title: 'Air Jordan 1 Mid');
-                return ShoeTile(
-                  shoes: shoeShop[index],
-                );
-              }),
-        )
-      ],
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  Shoes shoes = shoeShop[index];
+                  return ShoeTile(
+                    shoes: shoes,
+                  );
+                }),
+          )
+        ],
+      ),
     );
   }
 }
