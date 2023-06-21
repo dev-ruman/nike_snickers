@@ -18,6 +18,7 @@ class _ShopState extends State<Shop> {
       content: Text('Added Successfully'),
       behavior: SnackBarBehavior.floating,
       elevation: 0,
+      duration: Duration(milliseconds: 250),
     ));
   }
 

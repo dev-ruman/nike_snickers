@@ -19,7 +19,7 @@ class _LayoutState extends State<Layout> {
     });
   }
 
-  final List<Widget> _pages = [const Shop(), const Cart()];
+  final List<Widget> _pages = [const Shop(), const Cartpage()];
 
   @override
   Widget build(BuildContext context) {
